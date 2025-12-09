@@ -1,5 +1,13 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -e
 
-psql -v -U postgres -d "$POSTGRES_DB" -c "CREATE USER $POSTGRES_METRICS_USERNAME WITH PASSWORD '$POSTGRES_METRICS_PASSWORD';"
-psql -v -U postgres -d "$POSTGRES_DB" -c "GRANT pg_monitor TO $POSTGRES_METRICS_USERNAME;"
+echo "Creating metrics user..."
+
+psql -U postgres <<-EOSQL
+    CREATE USER $POSTGRES_METRICS_USERNAME WITH ENCRYPTED PASSWORD '$POSTGRES_METRICS_PASSWORD';
+    
+    GRANT pg_monitor TO $POSTGRES_METRICS_USERNAME;
+    GRANT CONNECT ON DATABASE $POSTGRES_DB TO $POSTGRES_METRICS_USERNAME;
+EOSQL
+
+echo "Metrics user created"

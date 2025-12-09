@@ -14,6 +14,10 @@ Thumbs.db
 
 # IDE
 .vscode/
+*.code-workspace
 
 traefik/acme.json
 backups/
+
+# Temporary note text files
+notes/*.txt
