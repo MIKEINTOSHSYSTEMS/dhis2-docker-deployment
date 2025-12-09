@@ -70,7 +70,7 @@ load_env_variables() {
         export $(grep -v '^#' .env | xargs) 2>/dev/null
         
         # Set defaults for required variables
-        export APP_HOSTNAME="${APP_HOSTNAME:-dhis2-127-0-0-1.nip.io}"
+        export APP_HOSTNAME="${APP_HOSTNAME:-dhis.merqconsultancy.org}"
         export POSTGRES_DB="${POSTGRES_DB:-dhis}"
         export POSTGRES_DB_USERNAME="${POSTGRES_DB_USERNAME:-dhis}"
         export POSTGRES_DB_PASSWORD="${POSTGRES_DB_PASSWORD:-dhis}"
